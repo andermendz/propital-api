@@ -1,82 +1,54 @@
-# Propital API - Real Estate Project Visualization System
+# Propital API - Sistema de Visualización de Proyectos Inmobiliarios
 
-This is a RESTful API for a real estate project visualization system that allows users to explore properties on an interactive map, search and filter projects, and view detailed information about each property.
+Esta es una API RESTful para un sistema de visualización de proyectos inmobiliarios que permite a los usuarios explorar propiedades en un mapa interactivo, buscar y filtrar proyectos, y ver información detallada de cada propiedad.
 
-## Features
+## Características
 
-- Interactive map integration
-- Property markers with preview images
-- Detailed property information
-- Search and filtering capabilities
-- Geographic navigation
-- Data persistence with PostgreSQL
+- Integración con mapa interactivo
+- Marcadores de propiedades con imágenes de vista previa
+- Información detallada de propiedades
+- Capacidades de búsqueda y filtrado
+- Navegación geográfica
+- Persistencia de datos con PostgreSQL
 
-## Tech Stack
+## Stack Tecnológico
 
 - NestJS (TypeScript)
 - PostgreSQL
 - TypeORM
-- Docker & Docker Compose
-- Swagger for API documentation
-- Jest for testing
+- Docker y Docker Compose
+- Swagger para documentación de API
+- Jest para pruebas
 
-## Prerequisites
+## Requisitos Previos
 
-- Docker and Docker Compose installed on your system
+- Docker y Docker Compose instalados en tu sistema
 - Git
 
-## Local Development Setup
+## Configuración del Entorno de Desarrollo
 
-1. Clone the repository:
+1. Clonar el repositorio:
    ```bash
    git clone <repository-url>
    cd propital-api
    ```
 
-2. Start the development environment:
+2. Iniciar el entorno de desarrollo:
    ```bash
-   docker-compose up -d
+   docker-compose up --build
    ```
 
-   This will:
-   - Build the NestJS application
-   - Start PostgreSQL database
-   - Set up all necessary configurations
+   Esto realizará:
+   - Construcción de la aplicación NestJS
+   - Inicio de la base de datos PostgreSQL
+   - Configuración de todos los ajustes necesarios
+   - Inicio de la API en modo desarrollo con recarga automática
 
-3. The API will be available at:
-   - API Endpoint: http://localhost:3000
-   - Swagger Documentation: http://localhost:3000/api
+3. La API estará disponible en:
+   - Estado de la API: http://localhost:3001
+   - Verificación de Salud: http://localhost:3001/health
+   - Documentación Swagger: http://localhost:3001/api
 
-## Testing
+## Pruebas
 
-Run the test suite:
-```bash
-docker-compose exec api npm run test
-```
-
-Run end-to-end tests:
-```bash
-docker-compose exec api npm run test:e2e
-```
-
-## API Documentation
-
-Once the application is running, you can access the Swagger documentation at http://localhost:3000/api to explore all available endpoints and their specifications.
-
-## Database Schema
-
-The system uses PostgreSQL with the following main entities:
-
-- Properties
-- Locations
-- PropertyTypes
-- PropertyDetails
-- Images
-
-## Contributing
-
-Please read through our contributing guidelines before making any changes.
-
-## License
-
-This project is licensed under the UNLICENSED license.
+Ejecutar el conjunto de pruebas:

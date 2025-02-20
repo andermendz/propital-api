@@ -2,6 +2,7 @@ import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { ConfigModule } from '@nestjs/config';
 import { PropertiesModule } from './properties/properties.module';
+import { HealthModule } from './health/health.module';
 
 @Module({
   imports: [
@@ -14,9 +15,16 @@ import { PropertiesModule } from './properties/properties.module';
       password: process.env.DB_PASSWORD,
       database: process.env.DB_DATABASE,
       entities: [__dirname + '/**/*.entity{.ts,.js}'],
-      synchronize: process.env.NODE_ENV === 'development', // Only true in development
+      synchronize: process.env.NODE_ENV === 'development',
+      autoLoadEntities: true,
+      logging: true, // Enable logging to see SQL queries
+      retryAttempts: 10,
+      retryDelay: 3000,
+      keepConnectionAlive: true,
+      ssl: false,
     }),
     PropertiesModule,
+    HealthModule,
   ],
   controllers: [],
   providers: [],
