@@ -96,14 +96,16 @@ La API estará disponible en:
    ```bash
    cp .env.example .env
    ```
-   Editar .env con tus configuraciones locales:
-   ```
+   > Nota: Asegúrate de que en tu archivo `.env` la variable `DB_HOST` esté establecida en `localhost` para desarrollo local. Si usas Docker, usa `postgres`.
+   Edita el archivo `.env` con tus configuraciones locales:
+   ```env
    DB_HOST=localhost
    DB_PORT=5432
    DB_USERNAME=postgres
    DB_PASSWORD=postgres
    DB_DATABASE=propital
    PORT=3001
+   NODE_ENV=development
    ```
 
 4. Iniciar la aplicación en modo desarrollo:
