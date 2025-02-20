@@ -18,9 +18,14 @@ export class PropertiesService {
     return await this.propertyRepository.save(property);
   }
 
-  // obtiene el listado completo de propiedades
-  async findAll(): Promise<Property[]> {
-    return await this.propertyRepository.find();
+  // obtiene el listado paginado de propiedades
+  async findAll(page = 1, limit = 10): Promise<{items: Property[], total: number}> {
+    const [items, total] = await this.propertyRepository.findAndCount({
+      skip: (page - 1) * limit,
+      take: limit,
+    });
+    
+    return { items, total };
   }
 
   // obtiene una propiedad por su identificador

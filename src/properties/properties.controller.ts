@@ -1,4 +1,4 @@
-import { Controller, Get, Post, Body, Param, Delete, Put, Query } from '@nestjs/common';
+import { Controller, Get, Post, Body, Param, Delete, Put, Query, DefaultValuePipe, ParseIntPipe } from '@nestjs/common';
 import { ApiTags, ApiOperation, ApiResponse, ApiQuery } from '@nestjs/swagger';
 import { PropertiesService } from './properties.service';
 import { CreatePropertyDto } from './dto/create-property.dto';
@@ -18,10 +18,15 @@ export class PropertiesController {
   }
 
   @Get()
-  @ApiOperation({ summary: 'obtiene todas las propiedades disponibles' })
-  @ApiResponse({ status: 200, description: 'lista de todas las propiedades', type: [Property] })
-  findAll(): Promise<Property[]> {
-    return this.propertiesService.findAll();
+  @ApiOperation({ summary: 'obtiene el listado paginado de propiedades' })
+  @ApiResponse({ status: 200, description: 'listado de propiedades', type: [Property] })
+  @ApiQuery({ name: 'page', required: false, type: Number, description: 'número de página' })
+  @ApiQuery({ name: 'limit', required: false, type: Number, description: 'elementos por página' })
+  findAll(
+    @Query('page', new DefaultValuePipe(1), ParseIntPipe) page: number,
+    @Query('limit', new DefaultValuePipe(10), ParseIntPipe) limit: number,
+  ): Promise<{items: Property[], total: number}> {
+    return this.propertiesService.findAll(page, limit);
   }
 
   @Get('search')
